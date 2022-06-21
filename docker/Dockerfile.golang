@@ -1,0 +1,11 @@
+FROM golang:1.16-alpine
+
+WORKDIR /app
+
+COPY ./app/library/go.mod ./app/library/go.sum ./app/library/*.go ./
+
+RUN go mod download && go mod verify && go get ./...
+
+RUN go build -o /docker-gs-ping
+
+CMD [ "/docker-gs-ping" ]

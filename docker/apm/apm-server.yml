@@ -1,0 +1,31 @@
+apm-server:
+  host: "0.0.0.0:8200"
+
+rum:
+  enabled: true
+  allow_origins: ["*"]
+  library_patterns: "node_modules|bower_components|~"
+  exclude_from_grouping: "^/webpack"
+  source_mapping:
+    enabled: true
+
+    elasticsearch:
+      hosts: ["https://es01:9200"]
+      username: "elastic"
+      password: "12345678"
+      ssl.verification_mode: none
+      expiration: 5m
+
+    index_pattern: "apm-*-sourcemap*"
+
+kibana:
+  enabled: true
+  host: "kibana:5601"
+  username: "elastic"
+  password: "senhaforte12345678"
+
+output.elasticsearch:
+  hosts: ["https://es01:9200"]
+  ssl.verification_mode: none
+  username: "elastic"
+  password: "senhaforte12345678"

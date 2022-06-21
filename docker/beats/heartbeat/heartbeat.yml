@@ -1,0 +1,29 @@
+heartbeat.monitors:
+  - type: http
+    schedule: "@every 60s"
+    urls:
+      - http://kibana:5601
+      - https://es01:9200
+    ssl.certificate_authorities: ["config/certs/ca/ca.crt"]
+
+  - type: icmp
+    schedule: "@every 60s"
+    hosts:
+      - es01
+      - kibana
+      - apm
+      - metricbeat
+
+processors:
+  - add_cloud_metadata: ~
+
+output.elasticsearch:
+  hosts: ["https://es01:9200"]
+  ssl.certificate_authorities: ["config/certs/ca/ca.crt"]
+  username: "elastic"
+  password: "senhaforte12345678"
+
+setup.kibana:
+  host: "kibana:5601"
+  username: "elastic"
+  password: "senhaforte12345678"

@@ -1,0 +1,7 @@
+FROM docker.elastic.co/beats/metricbeat:8.2.2
+
+USER root
+
+COPY --chown=root:root ./beats/metric/metricbeat.yml /usr/share/metricbeat/metricbeat.yml
+
+RUN chmod go-w /usr/share/metricbeat/metricbeat.yml
